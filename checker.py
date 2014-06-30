@@ -21,7 +21,7 @@ while True:
         print 'Erro?'
 
     for partida in data:
-        if int(partida['Quantity']) > -1:
+        if int(partida['Quantity']) > 0:
             print datetime.datetime.now(), partida
 
             if partida['PRPProductId'] == 'IMT58':
