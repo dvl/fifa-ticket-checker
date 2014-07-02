@@ -12,7 +12,14 @@ url = 'https://fwctickets.fifa.com/TopsAkaCalls/Calls.aspx/getRefreshChartAvaDem
 
 while True:
     # print '[!] Verificando...'
-    r = requests.get(url)
+    while True:
+        try:
+            r = requests.get(url)
+        except:
+            pass
+        else:
+            break
+
     obj = r.json()['d']
 
     if obj['success']:
@@ -24,7 +31,7 @@ while True:
         if int(partida['Quantity']) > 0:
             print datetime.datetime.now(), partida
 
-            if partida['PRPProductId'] == 'IMT58':
+            if partida['PRPProductId'] in ['IMT58', 'IMT64']:
                 pygame.mixer.init()
                 pygame.mixer.music.load("fire.wav")
                 pygame.mixer.music.play()
